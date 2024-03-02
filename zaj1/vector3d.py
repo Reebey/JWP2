@@ -28,6 +28,12 @@ class Vector3D:
     def dot(self, v):
         return self.x * v.x + self.y * v.y + self.z * v.z
 
+    def cross(self, v):
+        x = self.y * v.z - self.z * v.y
+        y = self.z * v.x - self.x * v.z
+        z = self.x * v.y - self.y * v.x
+        return Vector3D(x, y, z)
+
     def __add__(self, v):
         return Vector3D(self.x + v.x, self.y + v.y, self.z + v.z)
 
