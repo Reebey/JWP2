@@ -22,8 +22,11 @@ class Vector3D:
     def set_z(self, z): 
         self.z = z 
 
-    def norm():
+    def norm(self):
         return self.x**2 + self.y**2 + self.z**2
+
+    def dot(self, v):
+        return self.x * v.x + self.y * v.y + self.z * v.z
 
     def __add__(self, v):
         return Vector3D(self.x + v.x, self.y + v.y, self.z + v.z)
