@@ -22,6 +22,9 @@ class Vector3D:
     def set_z(self, z): 
         self.z = z 
 
+    def norm():
+        return self.x**2 + self.y**2 + self.z**2
+
     def __str__(self):
         return f"x: {self.x}, y: {self.y}, z: {self.z}"
 
