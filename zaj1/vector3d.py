@@ -28,6 +28,12 @@ class Vector3D:
     def __add__(self, v):
         return Vector3D(self.x + v.x, self.y + v.y, self.z + v.z)
 
+    def __sub__(self, v):
+        return Vector3D(self.x - v.x, self.y - v.y, self.z - v.z)
+
+    def __mul__(self, v):
+        return Vector3D(self.x * v.x, self.y * v.y, self.z * v.z)
+
     def __str__(self):
         return f"Vector3D({self.x}, {self.y}, {self.z})"
 
