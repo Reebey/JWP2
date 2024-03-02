@@ -34,6 +34,9 @@ class Vector3D:
         z = self.x * v.y - self.y * v.x
         return Vector3D(x, y, z)
 
+    def are_orthogonal(v1, v2):
+        return v1.dot(v2) == 0
+
     def __add__(self, v):
         return Vector3D(self.x + v.x, self.y + v.y, self.z + v.z)
 
