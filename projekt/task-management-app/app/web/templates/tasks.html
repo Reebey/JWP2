@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<section id="tasks">
+    <div class="content" style="margin-top: -100px;">
+        <a href="{{ url_for('task.add_task') }}" class="btn btn-primary">Add Task</a>
+        
+        <div class="kanban">
+            <div class="kanban-column">
+                <h2>To-Do</h2>
+                {% for note in task_notes if note.task.status == 'to-do' %}
+                <div class="task-note" style="background-color: {{ note.color }};">
+                    <div class="note-header">
+                        <span class="note-date">Created: {{ note.task.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                        <a href="{{ url_for('task.edit_task', id=note.task.id) }}" class="edit-task">edit</a>
+                        <a href="#" class="delete-task" onclick="deleteTask({{ note.task.id }})">&times;</a>
+                    </div>
+                    <a href="{{ url_for('task.view_task', id=note.task.id) }}">
+                        <h3>{{ note.task.title }}</h3>
+                    </a>
+                    <p>{{ note.task.description }}</p>
+                    <span>Status: {{ note.task.status }}</span>
+                    {% if note.task.due_date %}
+                    <span>Due Date: {{ note.task.due_date.strftime('%Y-%m-%d') }}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="kanban-column">
+                <h2>In Progress</h2>
+                {% for note in task_notes if note.task.status == 'in-progress' %}
+                <div class="task-note" style="background-color: {{ note.color }};">
+                    <div class="note-header">
+                        <span class="note-date">Created: {{ note.task.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                        <a href="{{ url_for('task.edit_task', id=note.task.id) }}" class="edit-task">edit</a>
+                        <a href="#" class="delete-task" onclick="deleteTask({{ note.task.id }})">&times;</a>
+                    </div>
+                    <a href="{{ url_for('task.view_task', id=note.task.id) }}">
+                        <h3>{{ note.task.title }}</h3>
+                    </a>
+                    <p>{{ note.task.description }}</p>
+                    <span>Status: {{ note.task.status }}</span>
+                    {% if note.task.due_date %}
+                    <span>Due Date: {{ note.task.due_date.strftime('%Y-%m-%d') }}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="kanban-column">
+                <h2>Completed</h2>
+                {% for note in task_notes if note.task.status == 'completed' %}
+                <div class="task-note" style="background-color: {{ note.color }};">
+                    <div class="note-header">
+                        <span class="note-date">Created: {{ note.task.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                        <a href="{{ url_for('task.edit_task', id=note.task.id) }}" class="edit-task">edit</a>
+                        <a href="#" class="delete-task" onclick="deleteTask({{ note.task.id }})">&times;</a>
+                    </div>
+                    <a href="{{ url_for('task.view_task', id=note.task.id) }}">
+                        <h3>{{ note.task.title }}</h3>
+                    </a>
+                    <p>{{ note.task.description }}</p>
+                    <span>Status: {{ note.task.status }}</span>
+                    {% if note.task.due_date %}
+                    <span>Due Date: {{ note.task.due_date.strftime('%Y-%m-%d') }}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script>
+        function deleteTask(taskId) {
+            fetch(`/tasks/${taskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error);
+            });
+        }
+    </script>
+</section>
+{% endblock %}

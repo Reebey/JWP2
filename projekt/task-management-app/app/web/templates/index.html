@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section id="hero">
+    <div class="hero-content">
+        <h2>Manage Your Tasks Efficiently</h2>
+        <p>Get more done with our task management app</p>
+        <a href="#features" class="btn">Learn More</a>
+    </div>
+</section>
+
+<section id="features">
+    <h2>Our Features</h2>
+    <div class="slides">
+        <div class="slide">
+            <h3>Effortless Organization</h3>
+            <p>Seamlessly categorize tasks, projects, and deadlines for enhanced productivity.</p>
+        </div>
+        
+        <div class="slide">
+            <h3>Collaborative Workspace</h3>
+            <p>Foster teamwork and cooperation by sharing tasks, files, and progress updates with your team members.</p>
+        </div>
+
+        <div class="slide">
+            <h3>Intelligent Reminders</h3>
+            <p>Receive timely notifications and alerts to stay on track with your tasks and deadlines.</p>
+        </div>
+    </div>
+    <div class="navigation-circles">
+        <span class="circle active" data-index="0"></span>
+        <span class="circle" data-index="1"></span>
+        <span class="circle" data-index="2"></span>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>We are dedicated to making your task management simple and effective.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Feel free to reach out with any questions or feedback!</p>
+</section>
+{% endblock %}

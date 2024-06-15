@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<section id="profile">
+    <div class="profile-content">
+        <h2>Profile</h2>
+        <form method="POST" action="{{ url_for('profile.user_profile') }}">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ current_user.email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password (leave blank if you don't want to change it)</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-warning" role="alert">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <button type="submit" class="btn">Update Profile</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Task Management App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Task Management App</h1>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('task.get_all_tasks') }}">Tasks</a></li>
+                            <li><a href="{{ url_for('profile.user_profile') }}">Profile</a></li>
+                            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                            <li><a href="{{ url_for('auth.signup') }}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <section id="#wrapper" class="container">
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2024 Task Management App. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
